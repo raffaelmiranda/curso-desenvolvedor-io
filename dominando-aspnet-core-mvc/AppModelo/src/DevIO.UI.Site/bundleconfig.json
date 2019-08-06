@@ -1,0 +1,22 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site_bunble.min.css",
+    "inputFiles": [
+      "wwwroot/lib/twitter-bootstrap/css/bootstrap.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site_bunble.min.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/js/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/twitter-bootstrap/js/bootstrap.min.js",
+    "inputFiles": [
+      "wwwroot/lib/twitter-bootstrap/js/bootstrap.js"
+    ]
+  }
+]
