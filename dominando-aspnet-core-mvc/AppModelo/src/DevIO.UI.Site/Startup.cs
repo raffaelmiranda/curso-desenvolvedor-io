@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DevIO.UI.Site
@@ -14,7 +15,17 @@ namespace DevIO.UI.Site
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configuração nova rota de areas
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
        
@@ -29,7 +40,9 @@ namespace DevIO.UI.Site
 
             app.UseMvc(routes => 
             {
-                routes.MapRoute( "Default","{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute("Default","{controller=Home}/{action=Index}/{id?}");
+
+                //routes.MapRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
