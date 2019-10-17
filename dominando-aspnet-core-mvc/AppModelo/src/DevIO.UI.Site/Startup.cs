@@ -9,12 +9,21 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DevIO.UI.Site
 {
     public class Startup
     {
+        public IConfiguration Configuration { get;  }
+
+        public Startup(IConfiguration configuration )
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             //Configuração nova rota de areas
@@ -25,6 +34,9 @@ namespace DevIO.UI.Site
                 options.AreaViewLocationFormats.Add("/Modulos/{2}/Views/Shared/{0}.cshtml");
                 options.AreaViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
             });
+
+            services.AddDbContext<MeuDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(name: "MeuDbContext"))); ;
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
