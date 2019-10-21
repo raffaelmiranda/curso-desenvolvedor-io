@@ -1,4 +1,5 @@
-﻿using AspNetCoreIdentity2.Models;
+﻿using AspNetCoreIdentity2.Extensions;
+using AspNetCoreIdentity2.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -33,6 +34,12 @@ namespace AspNetCoreIdentity2.Controllers
 
         [Authorize(Policy = "PodeExcluir")]
         public IActionResult SecretClaim()
+        {
+            return View("Secret");
+        }
+
+        [ClaimsAuthorize("Produtos", "Ler")]
+        public IActionResult ClaimCustom()
         {
             return View("Secret");
         }
