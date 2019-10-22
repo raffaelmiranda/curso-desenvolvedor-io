@@ -1,10 +1,8 @@
 ﻿using AspNetCoreIdentity2.Extensions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreIdentity2.Configuration
 {
@@ -13,7 +11,10 @@ namespace AspNetCoreIdentity2.Configuration
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddSingleton<IAuthorizationHandler, PermissaoNecessariaHandler>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(typeof(ILogger));
 
+            services.AddScoped<AuditFilter>();
             return services;
         }
     }

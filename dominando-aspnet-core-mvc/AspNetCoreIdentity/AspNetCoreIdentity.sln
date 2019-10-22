@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreIdentity", "AspNetCoreIdentity\AspNetCoreIdentity.csproj", "{A77DC1F2-2934-4F61-A58E-41D47C0BFE2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreIdentity2", "AspNetCoreIdentity2\AspNetCoreIdentity2.csproj", "{6719DEE6-7801-4471-B1DB-3C5D84C988B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreIdentity2", "AspNetCoreIdentity2\AspNetCoreIdentity2.csproj", "{6719DEE6-7801-4471-B1DB-3C5D84C988B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
