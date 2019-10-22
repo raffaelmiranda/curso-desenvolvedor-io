@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCoreIdentity2.Areas.Identity.Data;
-using AspNetCoreIdentity2.Extensions;
-using Microsoft.AspNetCore.Authorization;
+﻿using AspNetCoreIdentity2.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,44 +9,35 @@ namespace AspNetCoreIdentity2
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public Startup(IHostingEnvironment hostingEnviroment)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(hostingEnviroment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{hostingEnviroment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
+
+            if (hostingEnviroment.IsProduction())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+            Configuration = builder.Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            services.AddIdentityConfig(Configuration);
 
-            services.AddDbContext<AspNetCoreIdentity2Context>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("AspNetCoreIdentity2ContextConnection")));
+            services.AddAuthorizationConfig();
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<AspNetCoreIdentity2Context>();
-
-            services.AddAuthorization(options => 
-            {
-                options.AddPolicy("PodeExcluir", policy => policy.RequireClaim("PodeExcluir"));
-
-                options.AddPolicy("PodeLer", policy => policy.Requirements.Add(new PermissaoNecessaria("PodeLer")));
-                options.AddPolicy("PodeEscrever", policy => policy.Requirements.Add(new PermissaoNecessaria("PodeEscrever")));
-            });
-            services.AddSingleton<IAuthorizationHandler, PermissaoNecessariaHandler>();
+            services.ResolveDependencies();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
