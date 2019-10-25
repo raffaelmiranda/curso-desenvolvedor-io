@@ -21,7 +21,7 @@ namespace DevIO.Data.Repository
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Produto>> ObterProdutosPorFornecedores()
+        public async Task<IEnumerable<Produto>> ObterProdutosFornecedores()
         {
             return await _db.Produtos
                 .AsNoTracking()
