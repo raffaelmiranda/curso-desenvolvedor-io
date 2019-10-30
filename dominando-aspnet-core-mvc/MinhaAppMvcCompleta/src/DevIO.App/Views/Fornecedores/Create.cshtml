@@ -4,11 +4,10 @@
     ViewData["Title"] = "Novo Fornecedor";
 }
 
-<h1>@ViewData["Title"] </h1>
-
+<h3 style="padding-top: 50px">@ViewData["Title"]</h3>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Create">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -25,8 +24,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="TipoFornecedor" class="control-label"></label><br />
-                <input type="radio" value="1" asp-for="TipoFornecedor" checked />Pessoa Física <br />
-                <input type="radio" value="2" asp-for="TipoFornecedor" checked />Pessoa Jurídica
+                <input type="radio" value="1" asp-for="TipoFornecedor" checked /> Pessoa Física <br />
+                <input type="radio" value="2" asp-for="TipoFornecedor" checked /> Pessoa Jurídica
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
