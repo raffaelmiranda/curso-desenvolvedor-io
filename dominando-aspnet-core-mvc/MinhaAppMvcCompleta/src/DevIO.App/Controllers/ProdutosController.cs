@@ -103,7 +103,7 @@ namespace DevIO.App.Controllers
                     return View(produtoViewModel);
                 }
 
-                produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
+                produtoAtualizacao.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
             }
 
             produtoAtualizacao.Nome = produtoViewModel.Nome;
@@ -111,7 +111,7 @@ namespace DevIO.App.Controllers
             produtoAtualizacao.Valor = produtoViewModel.Valor;
             produtoAtualizacao.Ativo = produtoViewModel.Ativo;
 
-            await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
 
             return RedirectToAction("Index");
         }
