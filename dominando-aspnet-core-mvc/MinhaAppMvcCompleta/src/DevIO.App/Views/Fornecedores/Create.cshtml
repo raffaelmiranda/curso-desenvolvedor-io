@@ -10,7 +10,7 @@
     <div class="col-md-10">
         <form asp-action="Create">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -36,7 +36,7 @@
             <h4>Endereço</h4>
             <hr />
 
-            <partial name="_Endereco"/>
+            <partial name="_Endereco" />
             <div class="form-group">
                 <input type="submit" value="Cadastrar" class="btn btn-primary" />
                 <a class="btn btn-info" asp-action="Index">Voltar</a>
@@ -47,4 +47,8 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        BuscaCep();
+    </script>
 }
