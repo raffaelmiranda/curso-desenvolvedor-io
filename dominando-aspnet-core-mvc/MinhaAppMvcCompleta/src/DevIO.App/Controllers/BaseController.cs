@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DevIO.Business.Interfaces;
+﻿using DevIO.Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevIO.App.Controllers
