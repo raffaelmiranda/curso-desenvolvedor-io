@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DevIO.Business.Interfaces;
+﻿using DevIO.Business.Interfaces;
 using DevIO.Business.Notificacoes;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Linq;
 
 namespace DevIO.Api.Controllers
-{ 
+{
     [ApiController]
     public abstract class MainController : ControllerBase
     {

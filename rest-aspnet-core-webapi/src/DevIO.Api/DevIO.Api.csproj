@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
     <Folder Include="wwwroot\app\demo-webapi\src\assets\" />
   </ItemGroup>
 

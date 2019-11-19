@@ -1,15 +1,12 @@
 ﻿using DevIO.Business.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DevIO.Data.Context
 {
     public class MeuDBContext : DbContext
     {
-        public MeuDBContext(DbContextOptions options) : base(options)
+        public MeuDBContext(DbContextOptions<MeuDBContext> options) : base(options)
         {
 
         }
