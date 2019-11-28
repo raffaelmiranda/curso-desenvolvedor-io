@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,18 +16,19 @@ namespace DevIO.Api.Configurations
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //services.AddApiVersioning(options =>
-            //{
-            //    options.AssumeDefaultVersionWhenUnspecified = true;
-            //    options.DefaultApiVersion = new ApiVersion(1, 0);
-            //    options.ReportApiVersions = true;
-            //});
+            services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ReportApiVersions = true;
+                //options.ApiVersionReader = new HeaderApiVersionReader("api-version");
+            });
 
-            //services.AddVersionedApiExplorer(options =>
-            //{
-            //    options.GroupNameFormat = "'v'VVV";
-            //    options.SubstituteApiVersionInUrl = true;
-            //});
+            services.AddVersionedApiExplorer(options =>
+            {
+                options.GroupNameFormat = "'v'VVV";
+                options.SubstituteApiVersionInUrl = true;
+            });
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -35,6 +38,15 @@ namespace DevIO.Api.Configurations
 
             services.AddCors(options =>
             {
+                //options.AddDefaultPolicy(
+                //    builder =>
+                //        builder
+                //        .AllowAnyOrigin()
+                //        .AllowAnyMethod()
+                //        .AllowAnyHeader()
+                //        .AllowCredentials());
+
+
                 options.AddPolicy("Development",
                     builder =>
                         builder
@@ -60,8 +72,8 @@ namespace DevIO.Api.Configurations
         public static IApplicationBuilder UseMvcConfiguration(this IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
-            app.UseCors("Development");
             app.UseMvc();
+            app.UseApiVersioning();
 
             return app;
         }

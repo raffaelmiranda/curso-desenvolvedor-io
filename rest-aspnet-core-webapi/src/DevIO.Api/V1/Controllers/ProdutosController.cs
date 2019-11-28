@@ -1,17 +1,22 @@
 ﻿using AutoMapper;
+using DevIO.Api.Controllers;
+using DevIO.Api.Extensions;
 using DevIO.Api.ViewModels;
 using DevIO.Business.Interfaces;
 using DevIO.Business.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using System.Collections.Generic ;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace DevIO.Api.Controllers
+namespace DevIO.Api.V1.Controllers
 {
-    [Route("api/produtos")]
+    [Authorize]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/produtos")]
     public class ProdutosController : MainController
     {
         private readonly IProdutoRepository _produtoRepository;
@@ -21,7 +26,8 @@ namespace DevIO.Api.Controllers
         public ProdutosController(INotificador notificador,
                                   IProdutoRepository produtoRepository, 
                                   IProdutoService produtoService, 
-                                  IMapper mapper) : base (notificador)
+                                  IMapper mapper,
+                                  IUser user) : base (notificador, user)
         {
             _produtoRepository = produtoRepository;
             _produtoService = produtoService;
@@ -45,6 +51,7 @@ namespace DevIO.Api.Controllers
             return produtoViewModel;
         }
 
+        [ClaimsAuthorize("Produto","Adicionar")]
         [HttpPost]
         public async Task<ActionResult<ProdutoViewModel>> Adicionar(ProdutoViewModel produtoViewModel)
         {
@@ -84,7 +91,8 @@ namespace DevIO.Api.Controllers
 
             return true;
         }
-          
+
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [HttpPost("Adicionar")]
         public async Task<ActionResult<ProdutoViewModel>> AdicionarAlternativo(ProdutoImagemViewModel produtoViewModel)
         {
@@ -105,7 +113,7 @@ namespace DevIO.Api.Controllers
         //[DisableRequestSizeLimit]
         //[RequestSizeLimit(40000000)]
         [HttpPost("imagem")]
-        public async Task<ActionResult> AdicionarImagem(IFormFile file)
+        public ActionResult AdicionarImagem(IFormFile file)
         {
             return Ok(file);
         }
@@ -134,6 +142,7 @@ namespace DevIO.Api.Controllers
             return true;
         }
 
+        [ClaimsAuthorize("Produto", "Atualizar")]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Atualizar(Guid id, ProdutoViewModel produtoViewModel)
         {
@@ -168,6 +177,7 @@ namespace DevIO.Api.Controllers
             return CustomResponse(produtoViewModel);
         }
 
+        [ClaimsAuthorize("Produto", "Excluir")]
         [HttpDelete("{id:guid}")]
         public async Task<ActionResult<ProdutoViewModel>> Excluir(Guid id)
         {

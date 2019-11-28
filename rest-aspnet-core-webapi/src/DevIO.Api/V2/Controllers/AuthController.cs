@@ -1,22 +1,23 @@
-﻿using DevIO.Api.Extensions;
+﻿using DevIO.Api.Controllers;
+using DevIO.Api.Extensions;
 using DevIO.Api.ViewModels;
 using DevIO.Business.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevIO.Api.Controllers
+namespace DevIO.Api.V2.Controllers
 {
-    [Route("api")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}")]
+    //[DisableCors]
     public class AuthController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -27,8 +28,8 @@ namespace DevIO.Api.Controllers
         public AuthController(INotificador notificador,
                               SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings
-                              /*IUser user, ILogger<AuthController> logger*/) : base(notificador/*, user*/)
+                              IOptions<AppSettings> appSettings,
+                              IUser user/*, ILogger<AuthController> logger*/) : base(notificador, user)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -36,6 +37,7 @@ namespace DevIO.Api.Controllers
             _appSettings = appSettings.Value;
         }
 
+        //[EnableCors("Development")]
         [HttpPost("nova-conta")]
         public async Task<ActionResult> Registrar(RegisterUserViewModel registerUser)
         {
