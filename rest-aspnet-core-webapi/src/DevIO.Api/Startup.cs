@@ -3,7 +3,9 @@ using DevIO.Api.Configuration;
 using DevIO.Api.Configurations;
 using DevIO.Api.Extensions;
 using DevIO.Data.Context;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
@@ -39,8 +41,6 @@ namespace DevIO.Api
 
             services.AddLoggingConfiguration(Configuration);
 
-            services.AddHealthChecks();
-
             services.ResolveDependencies();
 
         }
@@ -69,8 +69,7 @@ namespace DevIO.Api
 
             app.UseLoggingConfiguration();
 
-            app.UseHealthChecks("/hc");
-
+            
         }
     }
 }
