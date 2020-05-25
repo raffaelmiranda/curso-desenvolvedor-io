@@ -13,3 +13,9 @@
   height: 50px;
   text-align: center;
 } 
+
+input,
+select,
+textarea {
+  max-width: 400px;
+}

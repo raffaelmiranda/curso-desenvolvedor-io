@@ -1,1 +1,63 @@
-<p>cadastro works!</p>
+<div class="container main-container">
+    <h4>Demo Cadastro</h4>
+    <hr/>
+
+    <form novalidate (ngSubmit)="adicionarUsuario()" [formGroup]="cadastroForm" >
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="nome">Nome Completo</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="nome" type="text" placeholder="Nome (Requerido)" formControlName="nome"/>
+                    <span class="text-danger" *ngIf="cadastroForm.get('nome').errors && (cadastroForm.get('nome').dirty || cadastroForm.get('nome').touched)">
+                        <p>Preencha o campo nome</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="cpf">CPF</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="cpf" type="text" placeholder="CPF (Requerido)" formControlName="cpf"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="email">E-mail</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="email" type="text" placeholder="E-mail (Requerido)" formControlName="email"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="senha">Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senha" type="password" placeholder="Senha (Requerido)" formControlName="senha"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="senhaConfirmacao">Confirme a Senha</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="senhaConfirmacao" type="password" placeholder="Confirme a Senha (Requerido)" formControlName="senhaConfirmacao"/>
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                   <span><button class="btn btn-success" id="Registrar" type="submit">Registrar</button></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                   <p>Formulário válido: {{ cadastroForm.valid }}</p>
+                   <p>Formulário tocado: {{ cadastroForm.touched }}</p>
+                   <p>Formulário sujo: {{ cadastroForm.dirty }}</p>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
