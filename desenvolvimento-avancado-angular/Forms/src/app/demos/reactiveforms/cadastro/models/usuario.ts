@@ -1,8 +1,8 @@
-export class Usuario {
+export interface Usuario {
     id: string;
     nome: string;
-    cpf: string;
+    CPF: string;
     email: string;
     senha: string;
-    senhaConfimar: string;
+    senhaConfirmacao: string;
 }
