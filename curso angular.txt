@@ -1,0 +1,15 @@
+netstat -a -o -n
+taskkill /F /PID 16740
+-------------------------------------------
+Promises
+Observables(subscribe, unsubscribe)
+Observers
+Forms: Reactive forms
+	- form controls, formgroups, form builder
+	- Object.assign
+Modulos Compartilhados
+Modulos de Roteamento
+Lazy loading de Rotas
+@Input @Output
+ng-content
+
