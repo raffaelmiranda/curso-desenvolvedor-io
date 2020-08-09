@@ -1,0 +1,62 @@
+.task-list {
+    background: #fff;
+    box-shadow: 0 16px 24px 0 rgba(0, 0, 0, .2);
+    border-radius: 4px;
+}
+
+.task-list h3 {
+    background: #552075;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 0.0rem !important;
+}
+
+.task-list__finalizado {
+    width: 22px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    background: url(/assets/parar_ativo.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+
+.task-list__iniciado {
+    width: 22px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
+    background: url(/assets/iniciar_ativo.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+
+.task-list__retroceder {
+    width: 22px;
+    height: 20px;
+    position: absolute;
+    right: 50px;
+    cursor: pointer;
+    background: url(/assets/retroceder_ativo.png) no-repeat 0 0;
+    background-size: 20px 20px;
+}
+
+.task-list li {
+    list-style-type: none !important;
+    position: relative;
+    padding: 10px 20px;
+}
+
+.task-list li:nth-child(2n) {
+    background: #f5f4f5;
+}
+
+.task-list li p {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.task-list li span {
+    color: #807d82;
+}
