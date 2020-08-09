@@ -21,10 +21,15 @@ export class TasksComponent implements OnInit, OnDestroy {
         map(todolist => todolist.filter(task => !task.iniciado && !task.finalizado)));
 
     this.subscription = this.taskService.getTodoList$.subscribe();
+  }
 
+  onToggle(event) {
+    this.taskService.toggle(event);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+
 }
