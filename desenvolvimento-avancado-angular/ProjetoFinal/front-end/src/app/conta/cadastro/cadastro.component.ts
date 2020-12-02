@@ -1,8 +1,10 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { ValidationMessages, GenericValidator, DisplayMessage } from '../../utils/generic-form-validation';
+import { CustomValidators } from 'ngx-custom-validators';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -37,6 +39,10 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+
+    let senha = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15])]);
+    let senhaConfirm = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15]), CustomValidators.equalTo(senha)]);
+
     this.cadastroForm = this.fb.group({
       email: ['', Validators.required, Validators.email],
       password: [''],
@@ -48,7 +54,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
   }
 
-  adicionaConta() {
+  adicionaConta(): void {
     if (this.cadastroForm.dirty && this.cadastroForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value);
 
