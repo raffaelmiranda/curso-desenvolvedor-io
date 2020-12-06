@@ -4,17 +4,30 @@ using System.Threading;
 using System.Threading.Tasks;
 using DevIO.Business.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DevIO.Data.Context
 {
     public class MeuDbContext : DbContext
     {
-        public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options) { }
+        private IConfiguration _configuration;
+        public MeuDbContext(DbContextOptions<MeuDbContext> options, IConfiguration configuration) : base(options)
+        {
+            _configuration = configuration;
+        }
 
+        public MeuDbContext() { }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<Fornecedor> Fornecedores { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+
+            base.OnConfiguring(optionsBuilder);
+
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             foreach (var property in modelBuilder.Model.GetEntityTypes()
