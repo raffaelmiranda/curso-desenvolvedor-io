@@ -1,0 +1,11 @@
+﻿
+https://docs.microsoft.com/en-us/ef/core/cli/dotnet
+dotnet tool install --global dotnet-ef
+
+
+https://docs.microsoft.com/pt-br/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-5.0
+dotnet ef database update
+dotnet ef database update Initial --project DevIO.Data.csproj -s DevIO.Data.csproj -c MeuDbContext --verbose
+
+Unable to resolve service for type 'Microsoft.EntityFrameworkCore.DbContextOptions`1[]' 
+while attempting to activate 'Context'.

@@ -36,10 +36,10 @@ namespace DevIO.Api
         {
             services.AddControllers();
 
-            services.AddDbContext<MeuDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            //services.AddDbContext<MeuDbContext>(options =>
+            //{
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            //});
 
             services.AddIdentityConfiguration(Configuration);
 
@@ -62,6 +62,11 @@ namespace DevIO.Api
             app.UseMvcConfiguration();
 
             app.UseSwaggerConfig(provider);
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
