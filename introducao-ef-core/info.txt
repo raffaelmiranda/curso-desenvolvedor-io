@@ -1,0 +1,24 @@
+PREPARAR MIGRAÇÕES
+
+Para gerar migrações com base em um contexto
+Microsoft.EntityFrameworkCore.Design
+
+1º Opção
+Para executar e aplicar as migrações em um banco
+Microsoft.EntityFrameworkCore.Tools
+
+2º Opção
+Dotnet EF ClI
+Global Tooll Entity Framewrok Core
+dotnet tool install --global dotnet-ef 
+
+Para verificar o dotnet ef cli instalado: dotnet ef
+
+GERAR SCRIPT DA MIGRAÇÃO
+dotnet ef migrations script -p .\CursoEFCore.csproj -o .\PrimeiraMigracao.sql
+
+GERAR SCRIPT IDEMPOTENTE DA MIGRAÇÃO 
+dotnet ef migrations script -p .\CursoEFCore.csproj -o .\Idempotente.sql -i
+
+REMOVE A ULTIMA MIGRAÇÃO
+dotnet ef migrations remove -p .\CursoEFCore.csproj

@@ -1,0 +1,47 @@
+Using project 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj'.
+Using startup project 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj'.
+Writing 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\obj\NerdStore.Catalogo.Data.csproj.EntityFrameworkCore.targets'...
+dotnet msbuild /target:GetEFProjectMetadata /property:EFProjectMetadataFile=C:\Users\Rafael\AppData\Local\Temp\tmpFFB6.tmp /verbosity:quiet /nologo E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj
+Writing 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\obj\NerdStore.Catalogo.Data.csproj.EntityFrameworkCore.targets'...
+dotnet msbuild /target:GetEFProjectMetadata /property:EFProjectMetadataFile=C:\Users\Rafael\AppData\Local\Temp\tmp63F.tmp /verbosity:quiet /nologo E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj
+Build started...
+dotnet build E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj /verbosity:quiet /nologo
+
+Compila‡Æo com ˆxito.
+    0 Aviso(s)
+    0 Erro(s)
+
+Tempo Decorrido 00:00:05.51
+Build succeeded.
+dotnet exec --depsfile E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\bin\Debug\netcoreapp3.1\NerdStore.Catalogo.Data.deps.json --additionalprobingpath C:\Users\Rafael\.nuget\packages --runtimeconfig E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\bin\Debug\netcoreapp3.1\NerdStore.Catalogo.Data.runtimeconfig.json C:\Users\Rafael\.dotnet\tools\.store\dotnet-ef\5.0.1\dotnet-ef\5.0.1\tools\netcoreapp3.1\any\tools\netcoreapp2.0\any\ef.dll migrations add Initial --assembly E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\bin\Debug\netcoreapp3.1\NerdStore.Catalogo.Data.dll --startup-assembly E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\bin\Debug\netcoreapp3.1\NerdStore.Catalogo.Data.dll --project-dir E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\ --language C# --working-dir E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data --verbose --root-namespace NerdStore.Catalogo.Data
+Using assembly 'NerdStore.Catalogo.Data'.
+Using startup assembly 'NerdStore.Catalogo.Data'.
+Using application base 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\bin\Debug\netcoreapp3.1'.
+Using working directory 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data'.
+Using root namespace 'NerdStore.Catalogo.Data'.
+Using project directory 'E:\Rafael\Projeto\desenvolvedor-io\modelagem-dominios-ricos\NerdStore\src\NerdStore.Catalogo.Data\'.
+Remaining arguments: .
+Finding DbContext classes...
+Finding IDesignTimeDbContextFactory implementations...
+Finding application service provider in assembly 'NerdStore.Catalogo.Data'...
+Finding Microsoft.Extensions.Hosting service provider...
+No static method 'CreateHostBuilder(string[])' was found on class 'Program'.
+No application service provider was found.
+Finding DbContext classes in the project...
+Found DbContext 'CatalogoContext'.
+Microsoft.EntityFrameworkCore.Design.OperationException: Unable to create an object of type 'CatalogoContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
+ ---> System.InvalidOperationException: Unable to resolve service for type 'Microsoft.EntityFrameworkCore.DbContextOptions`1[NerdStore.Catalogo.Data.CatalogoContext]' while attempting to activate 'NerdStore.Catalogo.Data.CatalogoContext'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ConstructorMatcher.CreateInstance(IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance(IServiceProvider provider, Type instanceType, Object[] parameters)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetServiceOrCreateInstance(IServiceProvider provider, Type type)
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.<>c__DisplayClass13_4.<FindContextTypes>b__13()
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.<>c__DisplayClass13_4.<FindContextTypes>b__13()
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.CreateContext(Func`1 factory)
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.CreateContext(String contextType)
+   at Microsoft.EntityFrameworkCore.Design.Internal.MigrationsOperations.AddMigration(String name, String outputDir, String contextType, String namespace)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.AddMigrationImpl(String name, String outputDir, String contextType, String namespace)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.AddMigration.<>c__DisplayClass0_0.<.ctor>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.<>c__DisplayClass3_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.Execute(Action action)
+Unable to create an object of type 'CatalogoContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
