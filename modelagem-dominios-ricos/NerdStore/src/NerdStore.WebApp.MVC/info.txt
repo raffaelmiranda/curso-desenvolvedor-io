@@ -1,0 +1,6 @@
+﻿
+dotnet ef migrations add Initial -p NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c CatalogoContext
+
+dotnet ef migrations remove -p NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c CatalogoContext
+
+dotnet ef database update -p NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c CatalogoContext
