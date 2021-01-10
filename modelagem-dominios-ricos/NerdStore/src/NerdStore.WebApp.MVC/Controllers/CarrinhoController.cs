@@ -40,7 +40,7 @@ namespace NerdStore.WebApp.MVC.Controllers
             var command = new AdicionarItemPedidoCommand(ClienteId, produto.Id, produto.Nome, quantidade, produto.Valor);
             await _mediatorHandler.EnviarComando(command);
 
-            //setudo deu certo
+            //se tudo deu certo
 
             TempData["Erro"] = "Produto Indisponível";
             return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });

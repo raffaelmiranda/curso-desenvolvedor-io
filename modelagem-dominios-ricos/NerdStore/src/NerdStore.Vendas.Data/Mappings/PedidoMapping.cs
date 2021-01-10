@@ -18,7 +18,7 @@ namespace NerdStore.Catalogo.Data.Mappings
                 .WithOne(c => c.Pedido)
                 .HasForeignKey(c => c.PedidoId);
 
-            builder.ToTable("Pedidos");
+            builder.ToTable("Pedidos","Venda");
         }
     }
 }

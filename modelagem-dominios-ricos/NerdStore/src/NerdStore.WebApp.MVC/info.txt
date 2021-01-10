@@ -1,6 +1,13 @@
 ﻿
+Verifciar de o dominio tem construtor padrão
+Colocar o context na classe startup do projeto principal
+
+executar o comando do EF partir da para src ("\NerdStore\src")
+
 dotnet ef migrations add Initial -p NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c CatalogoContext
-
 dotnet ef migrations remove -p NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c CatalogoContext
-
 dotnet ef database update -p NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c CatalogoContext
+
+dotnet ef migrations add Initial -p .\NerdStore.Vendas.Data\NerdStore.Vendas.Data.csproj -s .\NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c VendasContext
+dotnet ef migrations remove -p NerdStore.Vendas.Data\NerdStore.Vendas.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c VendasContext
+dotnet ef database update -p NerdStore.Vendas.Data\NerdStore.Vendas.Data.csproj -s NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj -c VendasContext

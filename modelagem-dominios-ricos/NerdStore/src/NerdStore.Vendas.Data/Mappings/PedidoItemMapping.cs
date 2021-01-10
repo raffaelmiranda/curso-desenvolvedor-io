@@ -19,7 +19,7 @@ namespace NerdStore.Catalogo.Data.Mappings
             builder.HasOne(c => c.Pedido)
                 .WithMany(c => c.PedidoItems);
 
-            builder.ToTable("PedidoItems");
+            builder.ToTable("PedidoItems","Venda");
         }
     }
 }

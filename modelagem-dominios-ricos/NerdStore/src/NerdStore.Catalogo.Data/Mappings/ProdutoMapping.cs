@@ -40,7 +40,7 @@ namespace NerdStore.Catalogo.Data.Mappings
                     .HasColumnType("int");
             });
 
-            builder.ToTable("Produtos");
+            builder.ToTable("Produtos", "Catalogo");
         }
     }
 }

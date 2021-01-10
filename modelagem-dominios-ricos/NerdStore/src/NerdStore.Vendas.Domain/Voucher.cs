@@ -9,6 +9,7 @@ namespace NerdStore.Vendas.Domain
 {
     public class Voucher : Entity
     {
+        protected Voucher() { }
         public string Codigo { get; private set; }
         public decimal? Percentual { get; private set; }
         public decimal? ValorDesconto { get; private set; }
