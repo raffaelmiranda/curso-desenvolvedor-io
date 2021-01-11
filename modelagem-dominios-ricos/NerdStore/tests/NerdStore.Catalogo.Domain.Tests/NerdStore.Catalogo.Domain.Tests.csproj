@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj" />
     <ProjectReference Include="..\..\src\NerdStore.Core\NerdStore.Core.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using NerdStore.Core.Messages;
-using System;
 using System.Threading.Tasks;
 
 namespace NerdStore.Core.Communication.Mediator
