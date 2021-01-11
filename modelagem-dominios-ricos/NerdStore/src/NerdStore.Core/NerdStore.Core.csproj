@@ -14,10 +14,4 @@
     <Folder Include="Messages\CommonMessages\IntegrationsEvents\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\NerdStore.DependencyValidation\DependencyValidation1.layerdiagram" Link="DependencyValidation1.layerdiagram">
-      <Visible>False</Visible>
-    </AdditionalFiles>
-  </ItemGroup>
-
 </Project>

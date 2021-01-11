@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NerdStore.Catalogo.Application.AutoMapper;
 using NerdStore.Catalogo.Data;
+using NerdStore.Catalogo.Domain;
 using NerdStore.Vendas.Data;
 using NerdStore.WebApp.MVC.Data;
 using NerdStore.WebApp.MVC.Setup;
@@ -30,15 +31,9 @@ namespace NerdStore.WebApp.MVC
 
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDbContext<VendasContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddDbContext<CatalogoContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<CatalogoContext>(options =>
                 options
@@ -46,8 +41,8 @@ namespace NerdStore.WebApp.MVC
                 .UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     p => p.EnableRetryOnFailure(
-                    maxRetryCount: Convert.ToInt32(Configuration["ConfigureSQLServer:MaxRetryCount"]),
-                    maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["ConfigureSQLServer:MaxRetryDelay"])),
+                    maxRetryCount: Convert.ToInt32(Configuration["Configure:MaxRetryCount"]),
+                    maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["Configure:MaxRetryDelay"])),
                     errorNumbersToAdd: null)
                 .MigrationsHistoryTable("Migration", "EF")));
 
@@ -55,10 +50,12 @@ namespace NerdStore.WebApp.MVC
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),
                     p => p.EnableRetryOnFailure(
-                    maxRetryCount: Convert.ToInt32(Configuration["ConfigureSQLServer:MaxRetryCount"]),
-                    maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["ConfigureSQLServer:MaxRetryDelay"])),
+                    maxRetryCount: Convert.ToInt32(Configuration["Configure:MaxRetryCount"]),
+                    maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["Configure:MaxRetryDelay"])),
                     errorNumbersToAdd: null)
                 .MigrationsHistoryTable("Migration", "EF")));
+
+
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -74,7 +71,7 @@ namespace NerdStore.WebApp.MVC
             services.RegisterServices();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -86,6 +83,8 @@ namespace NerdStore.WebApp.MVC
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
