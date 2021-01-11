@@ -7,10 +7,17 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="9.3.0" />
     <PackageReference Include="mediatr" Version="9.0.0" />
+    <PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Messages\CommonMessages\IntegrationsEvents\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\NerdStore.DependencyValidation\DependencyValidation1.layerdiagram" Link="DependencyValidation1.layerdiagram">
+      <Visible>False</Visible>
+    </AdditionalFiles>
   </ItemGroup>
 
 </Project>
