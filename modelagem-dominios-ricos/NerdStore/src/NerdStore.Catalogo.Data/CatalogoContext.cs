@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using NerdStore.Catalago.Domain;
+using NerdStore.Catalogo.Domain;
 using NerdStore.Core.Data;
 using System;
 using System.Linq;

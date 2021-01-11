@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using NerdStore.Catalago.Application.Services;
-using NerdStore.Catalago.Domain;
-using NerdStore.Catalago.Domain.Events;
+using NerdStore.Catalogo.Application.Services;
 using NerdStore.Catalogo.Data;
 using NerdStore.Catalogo.Data.Repository;
+using NerdStore.Catalogo.Domain;
+using NerdStore.Catalogo.Domain.Events;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Commands;

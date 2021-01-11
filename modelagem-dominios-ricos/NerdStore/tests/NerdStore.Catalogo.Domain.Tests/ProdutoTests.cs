@@ -1,4 +1,3 @@
-using NerdStore.Catalago.Domain;
 using NerdStore.Core.DomainObjects;
 using System;
 using Xunit;
