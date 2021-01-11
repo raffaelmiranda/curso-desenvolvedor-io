@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace NerdStore.Catalago.Domain.Events
+namespace NerdStore.Catalogo.Domain.Events
 {
     public class ProdutoEventHandler : INotificationHandler<ProdutoAbaixoEstoqueEvent>
     {

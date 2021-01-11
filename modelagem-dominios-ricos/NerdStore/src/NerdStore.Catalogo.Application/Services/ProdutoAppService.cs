@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
-using NerdStore.Catalago.Application.ViewModels;
-using NerdStore.Catalago.Domain;
+using NerdStore.Catalogo.Application.ViewModels;
+using NerdStore.Catalogo.Domain;
 using NerdStore.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace NerdStore.Catalago.Application.Services
+namespace NerdStore.Catalogo.Application.Services
 {
     public class ProdutoAppService : IProdutoAppService
     {

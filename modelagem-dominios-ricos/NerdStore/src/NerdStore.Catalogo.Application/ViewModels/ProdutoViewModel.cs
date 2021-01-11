@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace NerdStore.Catalago.Application.ViewModels
+namespace NerdStore.Catalogo.Application.ViewModels
 {
     public class ProdutoViewModel
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NerdStore.Catalago.Domain.Events
+namespace NerdStore.Catalogo.Domain.Events
 {
     public class ProdutoAbaixoEstoqueEvent : DomainEvent
     {

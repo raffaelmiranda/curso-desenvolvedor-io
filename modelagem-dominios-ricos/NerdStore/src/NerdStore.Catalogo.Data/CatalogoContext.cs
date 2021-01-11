@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using NerdStore.Catalago.Domain;
 using NerdStore.Core.Data;
 using System;
@@ -9,11 +11,30 @@ namespace NerdStore.Catalogo.Data
 {
     public class CatalogoContext : DbContext, IUnitOfWork
     {
-        public CatalogoContext(DbContextOptions<CatalogoContext> options) 
-            : base(options) { }
+        private static readonly ILoggerFactory _logger = LoggerFactory.Create(p => p.AddConsole());
+
+        public IConfiguration Configuration { get; }
+
+        public CatalogoContext(DbContextOptions<CatalogoContext> options, IConfiguration configuration) 
+            : base(options) 
+        {
+            Configuration = configuration;
+        }
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder
+        //        .UseLoggerFactory(_logger)
+        //        .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+        //        p => p.EnableRetryOnFailure(
+        //        maxRetryCount: Convert.ToInt32(Configuration["ConfigureSQLServer:MaxRetryCount"]),
+        //        maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["ConfigureSQLServer:MaxRetryDelay"])),
+        //        errorNumbersToAdd: null)
+        //    .MigrationsHistoryTable("Migration", "EF"));
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

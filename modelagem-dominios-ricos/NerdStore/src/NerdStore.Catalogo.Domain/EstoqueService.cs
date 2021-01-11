@@ -1,9 +1,9 @@
 ﻿using NerdStore.Catalago.Domain.Events;
-using NerdStore.Core.Bus;
+using NerdStore.Core.Communication.Mediator;
 using System;
 using System.Threading.Tasks;
 
-namespace NerdStore.Catalago.Domain
+namespace NerdStore.Catalogo.Domain
 {
     public class EstoqueService : IEstoqueService
     {

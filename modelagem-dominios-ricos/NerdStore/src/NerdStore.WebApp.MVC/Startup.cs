@@ -7,16 +7,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NerdStore.Catalago.Application.AutoMapper;
 using NerdStore.Catalogo.Data;
 using NerdStore.Vendas.Data;
 using NerdStore.WebApp.MVC.Data;
 using NerdStore.WebApp.MVC.Setup;
+using System;
 
 namespace NerdStore.WebApp.MVC
 {
     public class Startup
     {
+        private static readonly ILoggerFactory _logger = LoggerFactory.Create(p => p.AddConsole());
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,14 +30,35 @@ namespace NerdStore.WebApp.MVC
 
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            //services.AddDbContext<VendasContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddDbContext<CatalogoContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDbContext<CatalogoContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options
+                .UseLoggerFactory(_logger)
+                .UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    p => p.EnableRetryOnFailure(
+                    maxRetryCount: Convert.ToInt32(Configuration["ConfigureSQLServer:MaxRetryCount"]),
+                    maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["ConfigureSQLServer:MaxRetryDelay"])),
+                    errorNumbersToAdd: null)
+                .MigrationsHistoryTable("Migration", "EF")));
 
             services.AddDbContext<VendasContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    p => p.EnableRetryOnFailure(
+                    maxRetryCount: Convert.ToInt32(Configuration["ConfigureSQLServer:MaxRetryCount"]),
+                    maxRetryDelay: TimeSpan.FromSeconds(Convert.ToDouble(Configuration["ConfigureSQLServer:MaxRetryDelay"])),
+                    errorNumbersToAdd: null)
+                .MigrationsHistoryTable("Migration", "EF")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

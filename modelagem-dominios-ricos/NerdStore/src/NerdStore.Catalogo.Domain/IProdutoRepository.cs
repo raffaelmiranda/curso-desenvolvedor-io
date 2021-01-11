@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NerdStore.Catalago.Domain
+namespace NerdStore.Catalogo.Domain
 {
     public interface IProdutoRepository : IRepository<Produto>
     {
