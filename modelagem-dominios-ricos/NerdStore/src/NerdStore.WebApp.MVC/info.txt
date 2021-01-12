@@ -1,4 +1,11 @@
-﻿
+﻿servidor: shareinfodb 
+banco: NerdStoreDb
+user: useradmin
+senha !@1q2w3e4r
+
+https://app-nerdstore.azurewebsites.net
+
+
 Verifciar de o dominio tem construtor padrão
 Colocar o context na classe startup do projeto principal
 
