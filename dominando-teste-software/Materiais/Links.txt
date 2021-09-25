@@ -1,0 +1,11 @@
+https://docs.microsoft.com/pt-br/aspnet/core/test/integration-tests?view=aspnetcore-2.2
+
+https://anglesharp.github.io/
+
+https://specflow.org/
+
+https://www.seleniumhq.org/
+
+https://chromedriver.chromium.org/downloads
+
+https://docs.microsoft.com/en-us/azure/devops/pipelines/test/continuous-test-selenium?view=azure-devops
